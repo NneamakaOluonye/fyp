@@ -1,0 +1,37 @@
+stages:
+  - deploy
+
+deploy_development:
+  stage: deploy
+  tags:
+    - deposits
+  environment: Development
+  only:
+    - main
+  script:
+    - echo $CI_RUNNER_DESCRIPTION
+    - cp -R dist/. /var/www/html/dev/banking_v2/
+
+deploy_sandbox:
+  stage: deploy
+  tags:
+    - deposits
+  environment: Sandbox
+  only:
+    - sandbox
+  script:
+    - echo $CI_RUNNER_DESCRIPTION
+    - cp -R dist/. /var/www/html/test/banking_v2/
+
+deploy_production:
+  stage: deploy
+  tags:
+    - deposits
+  environment: Production
+  only:
+    - production
+  script:
+    - echo $CI_RUNNER_DESCRIPTION 
+    - cp -R dist/. /var/www/html/live/banking_v2/
+
+    

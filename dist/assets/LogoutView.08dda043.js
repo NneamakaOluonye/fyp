@@ -1,0 +1,1 @@
+import{_ as t,c as _,u as a,x as r}from"./index.30c974e3.js";const s={__name:"LogoutView",setup(u){const{removeLocalStorage:e}=_(),o=a();return r(()=>{e(),o.push({name:"login"})}),(n,c)=>null}};var l=t(s,[["__scopeId","data-v-61b046b2"]]);export{l as default};
