@@ -77,7 +77,7 @@ import {
   DBadge,
   Deposit2FilledIcon,
   MoneysFilledIcon,
-  DButton
+  DButton, BookFilledIcon, MultipleUsersFilledIcon
 } from "@deposits/ui-kit-vue";
 import { useRouter, RouterLink } from "vue-router";
 import {useAxios} from "~/composables/useAxios";
@@ -88,23 +88,18 @@ const router = useRouter();
 
 const overviews = ref([
   {
-    icon: Deposit2FilledIcon,
-    amount: "444",
+    icon: MultipleUsersFilledIcon,
+    amount: "0",
     title: "Enrolled Students",
     route: { name: "student_list" }
   },
   {
-    icon: MoneysFilledIcon,
-    amount: "5",
-    title: "Uploaded Courses",
-    route: { name: "course_list" }
-  },
-  {
-    icon: MoneysFilledIcon,
-    amount: "5",
-    title: "Ongoing Quizzes",
+    icon: BookFilledIcon,
+    amount: "0",
+    title: "Quiz",
     route: { name: "quiz_view" }
   },
+
 ]);
 const courseInfo = ref([
   {
