@@ -55,10 +55,16 @@
             <ChevronArrowDownIcon v-if="profileIsActive" class="collapse-arrow" />
             <ChevronArrowUpIcon v-else class="collapse-arrow" />
           </d-text>
-          <d-text is="p">
-            <d-box is="span">student</d-box>
-            <!--                <span class="badge">Admin</span>-->
-          </d-text>
+          <d-box v-if="role.hasRole('student')">
+            <d-text is="p">
+              <d-box is="span">student</d-box>
+            </d-text>
+          </d-box>
+          <d-box v-if="role.hasRole('instructor')">
+            <d-text is="p">
+              <d-box is="span">instructor</d-box>
+            </d-text>
+          </d-box>
         </d-box>
       </d-box>
 
