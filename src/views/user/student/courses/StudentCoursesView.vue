@@ -118,7 +118,7 @@ const getCourses = () => {
   loading.value = true;
 
   useAxios({
-    url: `/get-student-courses`,
+    url: `/get-courses`,
     callback: (data) => {
       if (data.status === "success") {
         courseData.value = [];

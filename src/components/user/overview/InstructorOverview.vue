@@ -22,7 +22,7 @@
     </d-box>
   </d-box>
   <d-box class="card" margin-top="20px">
-    <d-text class="title">Courses History</d-text>
+    <d-text class="title">Courses</d-text>
     <d-box is="hr" margin="20px 0" />
     <d-box v-if="courseData.length > 0">
       <d-table
