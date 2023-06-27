@@ -23,7 +23,7 @@
             <d-wysiwyg v-model="payload.desc" label="Course Description" placeholder="Enter course Description" />
           </d-box>
           <d-box margin-top="1em">
-            <d-file-picker @change="setFile" @cleared="clearFile" :accepts="['.xlsx','.pdf','.mpeg', '.mp4', '.mkv']" />
+            <d-file-picker @change="setFile" @cleared="clearFile" :accepts="['.xls','.docx','.xlsx','.pdf','.mpeg', '.mp4', '.mkv']" />
           </d-box>
           <d-box margin-top="1em">
             <d-button size="large" color-Scheme="primary" :loading="loading" text="Submit" responsive />
