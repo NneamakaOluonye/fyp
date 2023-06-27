@@ -14,28 +14,28 @@
                         <d-box class="answer__layout">
                             <d-box class="answer__card">
                                 <d-radio name="option"/>
-                                <d-text class="answer__option">Bill Gates</d-text>
+                                <d-text class="answer__option">{{ quiz.option_one }}</d-text>
                             </d-box>
                             <d-box class="answer__card">
                                 <d-radio name="option"/>
-                                <d-text class="answer__option">Elon Musk</d-text>
+                                <d-text class="answer__option">{{ quiz.option_two }}</d-text>
                             </d-box>
                         </d-box>
                         <d-box class="answer__layout">
                             <d-box class="answer__card">
                                 <d-radio name="option"/>
-                                <d-text class="answer__option">Martin Luther</d-text>
+                                <d-text class="answer__option">{{ quiz.option_three }}</d-text>
                             </d-box>
                             <d-box class="answer__card">
                                 <d-radio name="option"/>
-                                <d-text class="answer__option">Steve Jobs</d-text>
+                                <d-text class="answer__option">{{ quiz.option_four }}</d-text>
                             </d-box>
 
                         </d-box>
                     </d-box>
                 </d-card>
                 <d-box class="button__layout">
-                    <d-button size="large" text="Submit" color-scheme="primary"/>
+                    <d-button size="large" text="Submit" color-scheme="primary" @click="submit"/>
                 </d-box>
             </d-box>
         </d-box>
@@ -43,13 +43,14 @@
 </template>
 <script setup>
 import DashboardLayout from "~/layouts/DashboardLayout.vue";
-import {DBox, DCard, DText, DButton, DRadio} from "@deposits/ui-kit-vue";
+import {DBox, DCard, DText, DButton, DRadio, useToast} from "@deposits/ui-kit-vue";
 import {onMounted, ref} from "vue";
 import {useAxios} from "~/composables/useAxios";
 import {useRouter} from "vue-router";
 
 const quizzes = ref([]);
 const router = useRouter()
+const { pushToast } = useToast();
 const id = router.currentRoute.value.params.id
 
 onMounted(() => {
@@ -84,6 +85,36 @@ const getQuizes = () => {
             }
         }
     });
+};
+
+const submit = () => {
+  useAxios({
+    url: `/submit-quiz`,
+    callback: (data) => {
+      if (data.status === "success") {
+        pushToast({
+          description: data.message,
+          colorScheme: "success"
+        });
+
+        data.data.quizzes.forEach(quiz => {
+          quizzes.value.push({
+            quiz_id: quiz.id,
+            question: quiz.question,
+            option_one: quiz.option_one,
+            option_two: quiz.option_two,
+            option_three: quiz.option_three,
+            option_four: quiz.option_four
+          });
+        });
+      } else {
+        pushToast({
+          description: data.message,
+          colorScheme: "error"
+        });
+      }
+    },
+  });
 };
 </script>
 <style lang="scss">
