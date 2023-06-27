@@ -2,10 +2,23 @@ const routes = [
     {
         path: "/student-courses",
         name: "courses",
-        component: () => import("../views/user/student/courses/StudentCoursesView.vue"),
+        component: () => import("../views/user/student/courses/AvailableCoursesView.vue"),
         meta: {
             title: "Courses",
             description: "Your available courses",
+            requiresAuth: true,
+            roles: [
+                "student"
+            ]
+        }
+    },
+    {
+        path: "/enrolled-courses",
+        name: "enrolled-courses",
+        component: () => import("../views/user/student/courses/StudentCoursesView.vue"),
+        meta: {
+            title: "Courses",
+            description: "Your enrolled courses",
             requiresAuth: true,
             roles: [
                 "student"

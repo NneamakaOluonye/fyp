@@ -3,7 +3,7 @@
     <d-box class="card" margin="2em">
       <d-box display="flex" flex-direction="row" gap="1em" justify-content="space-between">
         <d-box>
-          <d-text class="title">Enrolled Courses</d-text>
+          <d-text class="title">Available Courses</d-text>
         </d-box>
       </d-box>
       <d-box is="hr" margin="20px 0" />
@@ -31,12 +31,6 @@
             />
           </template>
           <template v-slot:item.action="item">
-            <!--          <d-button-->
-            <!--              color-scheme="danger"-->
-            <!--              text="Enroll"-->
-            <!--              size="medium"-->
-            <!--              margin-right="10px"-->
-            <!--          />-->
             <d-button
               color-scheme="primary"
               text="View"
@@ -119,17 +113,17 @@ const getCourses = () => {
   loading.value = true;
 
   useAxios({
-    url: `/get-student-courses`,
+    url: `/get-available-courses`,
     callback: (data) => {
       if (data.status === "success") {
         courseData.value = [];
 
         data.data.forEach(course => {
           courseData.value.push({
-            course_id: course.course.unique_id,
-            course_name: course.course.name,
+            course_id: course.unique_id,
+            course_name: course.name,
             instructor_name: course.user ? course.user.name : "",
-            course_term: course.course.course_term + "days",
+            course_term: course.course_term + "days",
             created_at: formatDate(data.created_at,'LLL dd, yyyy'),
           });
         });

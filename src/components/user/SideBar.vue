@@ -208,11 +208,20 @@ const sidebarLinks = ref([
   },
   {
     route: { name: "courses" },
-    routeText: "Courses",
+    routeText: "Available Courses",
     icon: BookIcon,
     activeIcon: BookFilledIcon,
     role: [
-      "student",
+      "student"
+    ]
+  },
+  {
+    route: { name: "enrolled-courses" },
+    routeText: "Enrolled Courses",
+    icon: BookIcon,
+    activeIcon: BookFilledIcon,
+    role: [
+      "student"
     ]
   },
   {
