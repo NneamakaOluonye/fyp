@@ -7,10 +7,6 @@
             <d-box>
               <d-text class="title">Quiz List</d-text>
             </d-box>
-            <d-box>
-              <d-button text=" + Create a new quiz" size="large" color-scheme="primary"
-                        @click="router.push({name: 'create_quiz'})" />
-            </d-box>
           </d-box>
           <d-box is="hr" margin="20px 0" />
           <d-box v-if="quizData.length > 0">
