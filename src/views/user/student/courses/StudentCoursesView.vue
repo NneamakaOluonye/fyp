@@ -57,6 +57,7 @@ import DashboardLayout from "~/layouts/DashboardLayout.vue";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAxios } from "~/composables/useAxios";
+import {formatDate} from "~/composables/getFormattedDate";
 
 const router = useRouter();
 const courseInfo = ref([
@@ -124,10 +125,11 @@ const getCourses = () => {
 
         data.data.forEach(course => {
           courseData.value.push({
-            course_id: course.unique_id,
-            course_name: course.name,
+            course_id: course.course.unique_id,
+            course_name: course.course.name,
             instructor_name: course.user ? course.user.name : "",
-            course_term: course.course_term + "days"
+            course_term: course.course.course_term + "days",
+            created_at: formatDate(data.created_at,'LLL dd, yyyy'),
           });
         });
       } else {
